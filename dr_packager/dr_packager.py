@@ -90,7 +90,7 @@ def main():
         "-S",
         "--skip-build",
         action="store_true",
-        help="Skip react build (Use what is alredy in \\build\)",
+        help="Skip react build (Use what is already in \\build\)",
     )
     parser.add_argument(
         "--npm",
