@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "dr_packager"
+version = "0.1.0"
+description = "Automate react shipping with Django with a simple command"
+authors = ["moporem <pooriavrj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dr_package = "dr_packager:main"
