@@ -1,4 +1,6 @@
-# Django-React Packager
+
+
+# Django-React Packager ![version](https://img.shields.io/pypi/v/dr-packager)
 React-Django packager helps you ship a react front end with django as backend.
 This package automatically builds your react project and places the static and index file in their appropriate place in your django project.
 

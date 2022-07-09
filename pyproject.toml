@@ -5,6 +5,19 @@ description = "Automate react shipping with Django with a simple command"
 authors = ["moporem <pooriavrj@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/MoPoRem/dr_packager"
+repository = "https://github.com/MoPoRem/dr_packager"
+keywords = ["react", "django", "packager", "react-django",]
+classifiers = [
+    "Environment :: Console",
+	"Framework :: Django",
+	"Intended Audience :: Developers",
+	"Operating System :: OS Independent",
+
+]
+include = [
+    "LICENSE",
+]
 
 
 [tool.poetry.dependencies]
