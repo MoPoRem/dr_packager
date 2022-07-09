@@ -64,6 +64,31 @@ def determine_package_manager(root):
     return "unk"
 
 
+def determine_project_paths(base):
+    dirs = os.listdir(base)
+    django_path = None
+    django_found = False
+
+    react_path = None
+    react_found = False
+    for dir in dirs:
+        if os.path.isdir(dir):
+            files = [ab for ab in os.listdir(dir)]
+            for file in files:
+                if file == "manage.py":
+                    if django_found:
+                        raise RuntimeError("Multiple Django projects found!")
+                    django_path = os.path.abspath(dir)
+                    django_found = True
+                elif file in react_file_names:
+                    if react_found:
+                        print("Multiple react folders found!", end="\n\n")
+                        react_path = None
+                    react_path = os.path.abspath(dir)
+                    react_found = True
+    return (django_path, react_path)
+
+
 def run_build(pm):
     pm = pm.lower()
     if pm == "yarn":
