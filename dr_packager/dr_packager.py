@@ -7,6 +7,8 @@ import importlib.util
 import shutil
 import glob
 
+react_file_names = ["package.json"]
+
 
 def import_settings(name, path):
     spec = importlib.util.spec_from_file_location(f"{name}.{name}.settings", path)
@@ -78,15 +80,31 @@ def determine_project_paths(base):
                 if file == "manage.py":
                     if django_found:
                         raise RuntimeError("Multiple Django projects found!")
-                    django_path = os.path.abspath(dir)
-                    django_found = True
+                    else:
+                        django_path = os.path.abspath(dir)
+                        django_found = True
                 elif file in react_file_names:
                     if react_found:
                         print("Multiple react folders found!", end="\n\n")
                         react_path = None
-                    react_path = os.path.abspath(dir)
-                    react_found = True
+                    else:
+                        react_path = os.path.abspath(dir)
+                        react_found = True
     return (django_path, react_path)
+
+
+def find_settings_path(django_path):
+    """Searches for settings.py in maximum of 2 depth,
+    cause thats how a normal django project should be (TODO: make it recursive)"""
+    dirs = os.listdir(django_path)
+    for dir in dirs:
+        if dir == "settings.py":
+            print("WARNING: found settings.py in django base path!")
+        if os.path.isdir(dir):
+            files = [f for f in os.listdir(dir)]
+            if "settings.py" in files:
+                return dir
+    return None
 
 
 def run_build(pm):
